@@ -1,0 +1,8 @@
+ru:
+  webhook: Вебхуки
+  notice_fail_create_webhook: Не удалось создать вебхук.
+  notice_successful_create_webhook: Вебхук успешно создан.
+  notice_fail_update_webhook: Не удалось обновить вебхук.
+  notice_successful_update_webhook : Вебхук успешно обновлен.
+  notice_fail_delete_webhook: Не удалось удалить вебхук.
+  notice_successful_delete_webhook : Вебхук успешно удален.
