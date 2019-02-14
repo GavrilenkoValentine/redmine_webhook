@@ -20,7 +20,6 @@ module RedmineWebhook
         :estimated_hours => @issue.estimated_hours,
         :is_private => @issue.is_private,
         :lock_version => @issue.lock_version,
-        :channel_id => @issue.custom_value_for(19),
         :custom_fields => @issue.custom_field_values.map {|cf| RedmineWebhook::CFWrapper.new(cf).to_hash},
         :project => RedmineWebhook::ProjectWrapper.new(@issue.project).to_hash,
         :status => RedmineWebhook::StatusWrapper.new(@issue.status).to_hash,

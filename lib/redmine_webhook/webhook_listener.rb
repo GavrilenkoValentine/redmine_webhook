@@ -9,8 +9,8 @@ module RedmineWebhook
       return unless webhooks
       post(webhooks, issue_to_json(issue, controller))
     end
-    
-    # Added Gavrilenko_Valentine
+
+    # --- Added Gavrilenko_Valentine ---
     def controller_issues_bulk_edit_after_save(context = {})
       journal = context[:journal]
       controller = context[:controller]
@@ -20,7 +20,7 @@ module RedmineWebhook
       return unless webhooks
       post(webhooks, journal_to_json(issue, journal, controller))
     end
-    #end
+    #--- end ---
 
     def controller_issues_edit_after_save(context = {})
       journal = context[:journal]
@@ -31,6 +31,20 @@ module RedmineWebhook
       return unless webhooks
       post(webhooks, journal_to_json(issue, journal, controller))
     end
+
+    #--- Added by Gavrilenko_Valentine ---
+    def model_changeset_scan_commit_for_issue_ids_pre_issue_update(context={})
+		issue = context[:issue]
+		journal = issue.current_journal
+		changeset = context[:changeset]
+    action = context[:action]
+    project = issue.project
+    webhooks = Webhook.where(:project_id => project.project.id)
+		return unless webhooks
+    post(webhooks, git_changeset_to_json(issue, journal, changeset, action))
+	end
+    #---end---
+
 
     private
     def issue_to_json(issue, controller)
@@ -53,6 +67,20 @@ module RedmineWebhook
         }
       }.to_json
     end
+
+    # --- Added by Gavrilenko_Valentine ---
+    def git_changeset_to_json(issue, journal, changeset, action)
+      {
+        :payload => {
+          :action => 'changeset',
+          :changeset_action => action,
+          :issue => RedmineWebhook::IssueWrapper.new(issue).to_hash,
+          :changeset => RedmineWebhook::ChangesetWrapper.new(changeset).to_hash,
+          :journal => RedmineWebhook::JournalWrapper.new(journal).to_hash
+        }
+      }.to_json
+    end
+    #---end---
 
     def post(webhooks, request_body)
       Thread.start do
