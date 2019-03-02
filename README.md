@@ -3,9 +3,6 @@ Redmine WebHook Plugin
 
 A Redmine plugin posts webhook on creating and updating tickets.
 
-Author
-------------------------------
-* @suer
 
 Install
 ------------------------------
@@ -24,143 +21,332 @@ Post Data Example
 
     {
       "payload": {
+        "action": "opened",
         "issue": {
-          "author": {
-            "icon_url": "http://www.gravatar.com/avatar/example",
-            "identity_url": null,
-            "lastname": "user",
-            "firstname": "test",
-            "mail": "test@example.com",
-            "login": "test",
-            "id": 3
-          },
-          "assignee": {
-            "icon_url": "http://www.gravatar.com/avatar/example",
-            "identity_url": null,
-            "lastname": "user",
-            "firstname": "test",
-            "mail": "test@example.com",
-            "login": "test",
-            "id": 3
-          },
-          "priority": {
-            "name": "normal",
-            "id": 2
-          },
-          "tracker": {
-            "name": "bug",
-            "id": 1
-          },
-          "parent_id": null,
-          "root_id": 191,
-          "closed_on": null,
-          "updated_on": "2014-03-01T15:17:48Z",
-          "created_on": "2014-03-01T15:17:48Z",
-          "description": "I'm having a problem with this.",
-          "subject": "Found a bug",
           "id": 191,
+          "subject": "Found a bug",
+          "description": "I'm having a problem with this.",
+          "created_on": "2014-03-01T15:17:48Z",
+          "updated_on": "2014-03-01T15:17:48Z",
+          "closed_on": null,
+          "root_id": 191,
+          "parent_id": null,
           "done_ratio": 0,
           "start_date": "2014-03-02",
           "due_date": null,
           "estimated_hours": null,
           "is_private": false,
           "lock_version": 0,
+          "custom_fields":
+            [ { "id": 4,
+                "name": "Planned start",
+                "value": ''
+              },
+              { "id": 5,
+                "name": "Planned end",
+                "value": ''
+              },
+              { "id": 7,
+                "name": "Deadline",
+                "value": "2019-03-04"
+              },
+              { "id": 9,
+                "name": "Without test",
+                "value": 1
+              },
+              { "id": 19,
+                "name": "Channel name",
+                "value": ''
+               } ],
           "project": {
-            "homepage": "",
-            "created_on": "2013-01-12T11:50:26Z",
-            "description": "",
-            "name": "Test Project",
+            "id": 4,
             "identifier": "test",
-            "id": 4
+            "name": "Test Project",
+            "description": "",
+            "created_on": "2013-01-12T11:50:26Z",
+            "homepage": ""
           },
           "status": {
-            "name": "new",
-            "id": 1
-          }
+            "id": 1,
+            "name": "new"
+          },
+          "tracker": {
+            "id": 1,
+            "name": "bug"
+          },
+          "priority": {
+            "id": 2,
+            "name": "normal"
+          },  
+          "author": {
+            "id": 3,
+            "login": "test",
+            "mail": "test@example.com",
+            "firstname": "test",
+            "lastname": "user"
+          },             
+          "assignee": {
+            "id": 3,
+            "login": "test",
+            "mail": "test@example.com",
+            "firstname": "test",
+            "lastname": "user"
+          },
+          "watchers":
+            [ { "id": 3,
+                "login": "test",
+                "mail": "test@example.com",
+                "firstname": "test",
+                "lastname": "user"
+              },
+              { "id": 3,
+                "login": "test",
+                "mail": "test@example.com",
+                "firstname": "test",
+                "lastname": "user"
+              }
+          ],
         },
-        "action": "opened",
         "url": "https://example.com"
       }
     }
+
+
+
 
 ### Issue updated
 
     {
       "payload": {
-        "url": "https://example.com",
-        "journal": {
-          "details": [],
-          "author": {
-            "icon_url": "http://www.gravatar.com/avatar/example",
-            "identity_url": null,
-            "lastname": "user",
-            "firstname": "test",
-            "mail": "test@example.com",
-            "login": "test",
-            "id": 3
-          },
-          "assignee": {
-            "icon_url": "http://www.gravatar.com/avatar/example",
-            "identity_url": null,
-            "lastname": "user",
-            "firstname": "test",
-            "mail": "test@example.com",
-            "login": "test",
-            "id": 3
-          },
-          "private_notes": false,
-          "created_on": "2014-03-01T16:22:46Z",
-          "notes": "Fixed",
-          "id": 195
-        },
+        "action": "updated",
         "issue": {
-          "author": {
-            "icon_url": "http://www.gravatar.com/avatar/example",
-            "identity_url": null,
-            "lastname": "user",
-            "firstname": "test",
-            "mail": "test@example.com",
-            "login": "test",
-            "id": 3
-          },
-          "priority": {
-            "name": "normal",
-            "id": 2
-          },
-          "tracker": {
-            "name": "bug",
-            "id": 1
-          },
-          "parent_id": null,
-          "root_id": 196,
-          "closed_on": null,
-          "updated_on": "2014-03-01T16:22:46Z",
-          "created_on": "2014-03-01T15:44:22Z",
-          "description": "test",
+          "id": 191,
           "subject": "Found a bug",
-          "id": 196,
+          "description": "I'm having a problem with this.",
+          "created_on": "2014-03-01T15:17:48Z",
+          "updated_on": "2014-03-01T15:17:48Z",
+          "closed_on": null,
+          "root_id": 191,
+          "parent_id": null,
           "done_ratio": 0,
           "start_date": "2014-03-02",
           "due_date": null,
           "estimated_hours": null,
           "is_private": false,
-          "lock_version": 2,
+          "lock_version": 0,
+          "custom_fields":
+            [ { "id": 4,
+                "name": "Planned start",
+                "value": ''
+              },
+              { "id": 5,
+                "name": "Planned end",
+                "value": ''
+              },
+              { "id": 7,
+                "name": "Deadline",
+                "value": "2019-03-04"
+              },
+              { "id": 9,
+                "name": "Without test",
+                "value": 1
+              },
+              { "id": 19,
+                "name": "Channel name",
+                "value": ''
+               } ],
           "project": {
-            "homepage": "",
-            "created_on": "2013-01-12T11:50:26Z",
-            "description": "",
-            "name": "Test Project",
+            "id": 4,
             "identifier": "test",
-            "id": 4
+            "name": "Test Project",
+            "description": "",
+            "created_on": "2013-01-12T11:50:26Z",
+            "homepage": ""
           },
           "status": {
-            "name": "normal",
-            "id": 1
-          }
+            "id": 1,
+            "name": "new"
+          },
+          "tracker": {
+            "id": 1,
+            "name": "bug"
+          },
+          "priority": {
+            "id": 2,
+            "name": "normal"
+          },  
+          "author": {
+            "id": 3,
+            "login": "test",
+            "mail": "test@example.com",
+            "firstname": "test",
+            "lastname": "user"
+          },             
+          "assignee": {
+            "id": 3,
+            "login": "test",
+            "mail": "test@example.com",
+            "firstname": "test",
+            "lastname": "user"
+          },
+          "watchers":
+            [ { "id": 3,
+                "login": "test",
+                "mail": "test@example.com",
+                "firstname": "test",
+                "lastname": "user"
+              },
+              { "id": 3,
+                "login": "test",
+                "mail": "test@example.com",
+                "firstname": "test",
+                "lastname": "user"
+              }
+          ],
         },
-        "action": "updated"
+        "journal": {
+          "id": 6363,
+          "notes": '',
+          "created_on": "2019-03-02T06:25:52.005Z",
+          "private_notes": false,
+          "author": {
+            "id": 3,
+            "login": "test",
+            "mail": "test@example.com",
+            "firstname": "test",
+            "lastname": "user"
+          },
+          "details":
+            [ { "id": 78,
+                "value": "New value",
+                "old_value": '',
+                "prop_key:"" 19,
+                "property": "cf"
+          } ]
+        },
+        "url": "https://example.com"
       }
     }
+
+
+
+
+### Issue changeset
+
+    {
+      "payload": {
+        "action": "changeset",
+        "issue": {
+          "id": 191,
+          "subject": "Found a bug",
+          "description": "I'm having a problem with this.",
+          "created_on": "2014-03-01T15:17:48Z",
+          "updated_on": "2014-03-01T15:17:48Z",
+          "closed_on": null,
+          "root_id": 191,
+          "parent_id": null,
+          "done_ratio": 0,
+          "start_date": "2014-03-02",
+          "due_date": null,
+          "estimated_hours": null,
+          "is_private": false,
+          "lock_version": 0,
+          "custom_fields":
+            [ { "id": 4,
+                "name": "Planned start",
+                "value": ''
+              },
+              { "id": 5,
+                "name": "Planned end",
+                "value": ''
+              },
+              { "id": 7,
+                "name": "Deadline",
+                "value": "2019-03-04"
+              },
+              { "id": 9,
+                "name": "Without test",
+                "value": 1
+              },
+              { "id": 19,
+                "name": "Channel name",
+                "value": ''
+               } ],
+          "project": {
+            "id": 4,
+            "identifier": "test",
+            "name": "Test Project",
+            "description": "",
+            "created_on": "2013-01-12T11:50:26Z",
+            "homepage": ""
+          },
+          "status": {
+            "id": 1,
+            "name": "new"
+          },
+          "tracker": {
+            "id": 1,
+            "name": "bug"
+          },
+          "priority": {
+            "id": 2,
+            "name": "normal"
+          },  
+          "author": {
+            "id": 3,
+            "login": "test",
+            "mail": "test@example.com",
+            "firstname": "test",
+            "lastname": "user"
+          },             
+          "assignee": {
+            "id": 3,
+            "login": "test",
+            "mail": "test@example.com",
+            "firstname": "test",
+            "lastname": "user"
+          },
+          "watchers":
+            [ { "id": 3,
+                "login": "test",
+                "mail": "test@example.com",
+                "firstname": "test",
+                "lastname": "user"
+              },
+              { "id": 3,
+                "login": "test",
+                "mail": "test@example.com",
+                "firstname": "test",
+                "lastname": "user"
+              }
+          ],
+        },
+        "changeset": {
+          "id": 5,
+          "committer": "test user <test@example.com>",
+          "committed_on": "2019-03-02T06:25:52.005Z",
+          "commit_link": '<https://example.com/projects/test_project/repository/revisions/c55c3f3078ee8812153bcaef3318e5ac3d4edcc6|description of commit_4 | verif #191>'
+        },
+        "journal": {
+          "id": null,
+          "notes": 'Applied in changeset commit:test|c55c3f3078ee8812153bcaef3318e5ac3d4edcc6.',
+          "created_on": "null",
+          "private_notes": false,
+          "author": {
+            "id": 3,
+            "login": "test",
+            "mail": "test@example.com",
+            "firstname": "test",
+            "lastname": "user"
+          },
+          "details":
+            []
+        },
+        "url": "https://example.com"
+      }
+    }
+
+
 
 Requirements
 ------------------------------
