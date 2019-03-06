@@ -14,6 +14,8 @@ Type below commands:
 
 Then, restart your redmine.
 
+An update from context menu doesn't call a webhook event. It is caused by a lack of functionality hooking in Redmine. For add this event hook change your issue_controller.rb as here: https://github.com/hiddentao/redmine-1/commit/f88c6ca01e89246b5bcd62fa26cc651ee33ba212
+
 Post Data Example
 ------------------------------
 
